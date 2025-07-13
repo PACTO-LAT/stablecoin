@@ -1,7 +1,7 @@
 [workspace]
 resolver = "2"
 members = [
-  "Contracts/stablecoin",
+  "contracts/stablecoin",
 ]
 
 [workspace.package]

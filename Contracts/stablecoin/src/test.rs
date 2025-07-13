@@ -31,7 +31,7 @@ mod test {
         // Test contract metadata
         assert_eq!(contract.name(), String::from_str(&env, "Costa Rica Colon"));
         assert_eq!(contract.symbol(), String::from_str(&env, "CRCX"));
-        assert_eq!(contract.decimals(), 7);
+        assert_eq!(contract.decimals(), 0);
         assert_eq!(contract.total_supply(), 1000);
         assert_eq!(contract.is_paused(), false);
         
@@ -375,6 +375,46 @@ mod test {
         
         // Balance should remain unchanged
         assert_eq!(contract.balance(&user), 1000);
+    }
+
+    #[test]
+    fn test_integer_only_operations() {
+        let env = Env::default();
+        env.mock_all_auths();
+        
+        let admin = Address::generate(&env);
+        let minter = Address::generate(&env);
+        let pauser = Address::generate(&env);
+        let upgrader = Address::generate(&env);
+        
+        let contract = MyStablecoinClient::new(&env, &env.register(MyStablecoin, ()));
+        
+        // Initialize contract
+        contract.initialize(&admin, &pauser, &upgrader, &minter);
+        
+        let user = Address::generate(&env);
+        
+        // Test that integer operations work correctly
+        contract.mint(&minter, &user, &1000);
+        assert_eq!(contract.balance(&user), 1000);
+        
+        // Test that minimum amount of 5 works
+        contract.mint(&minter, &user, &5);
+        assert_eq!(contract.balance(&user), 1005);
+        
+        // Test transfer with integer amounts
+        let user2 = Address::generate(&env);
+        contract.transfer(&user, &user2, &500);
+        assert_eq!(contract.balance(&user), 505);
+        assert_eq!(contract.balance(&user2), 500);
+        
+        // Test burn with integer amounts
+        contract.burn(&user, &5);
+        assert_eq!(contract.balance(&user), 500);
+        assert_eq!(contract.total_supply(), 1000);
+        
+        // Verify decimals is 0
+        assert_eq!(contract.decimals(), 0);
     }
 }
 
