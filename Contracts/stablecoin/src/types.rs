@@ -4,7 +4,7 @@
 use soroban_sdk::{Env, String, Symbol, contracterror, contracttype};
 
 /// Stablecoin metadata constants
-pub const DECIMALS: u32 = 0;
+pub const DECIMALS: u32 = 2;
 pub const NAME: &str = "Costa Rica Colon";
 pub const SYMBOL: &str = "CRCX";
 
@@ -14,9 +14,9 @@ pub const UPGRADER_ROLE: &str = "upgrader";
 pub const MINTER_ROLE: &str = "minter";
 
 /// Operational limits for validation
-pub const MAX_SUPPLY: i128 = 1_000_000_000; // 1 billion tokens
-pub const MAX_SINGLE_OPERATION: i128 = 100_000_000; // 100 million tokens max per operation
-pub const MIN_AMOUNT: i128 = 5; // Minimum 1 whole token - smallest transferable amount
+pub const MAX_SUPPLY: i128 = 1_000_000_000_000_000; // 1 trillion tokens
+pub const MAX_SINGLE_OPERATION: i128 = 100_000_000_000; // 100 billion tokens max per operation
+pub const MIN_AMOUNT: i128 = 1; // Minimum 1 whole token - smallest transferable amount
 
 /// Validation configuration
 pub const ENABLE_SUPPLY_LIMITS: bool = true;

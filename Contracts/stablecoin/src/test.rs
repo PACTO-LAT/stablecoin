@@ -31,7 +31,7 @@ mod test {
         // Test contract metadata
         assert_eq!(contract.name(), String::from_str(&env, "Costa Rica Colon"));
         assert_eq!(contract.symbol(), String::from_str(&env, "CRCX"));
-        assert_eq!(contract.decimals(), 0);
+        assert_eq!(contract.decimals(), 2);
         assert_eq!(contract.total_supply(), 1000);
         assert_eq!(contract.is_paused(), false);
         
@@ -399,22 +399,22 @@ mod test {
         assert_eq!(contract.balance(&user), 1000);
         
         // Test that minimum amount of 5 works
-        contract.mint(&minter, &user, &5);
-        assert_eq!(contract.balance(&user), 1005);
+        contract.mint(&minter, &user, &1);
+        assert_eq!(contract.balance(&user), 1001);
         
         // Test transfer with integer amounts
         let user2 = Address::generate(&env);
         contract.transfer(&user, &user2, &500);
-        assert_eq!(contract.balance(&user), 505);
+        assert_eq!(contract.balance(&user), 501);
         assert_eq!(contract.balance(&user2), 500);
         
         // Test burn with integer amounts
-        contract.burn(&user, &5);
+        contract.burn(&user, &1);
         assert_eq!(contract.balance(&user), 500);
         assert_eq!(contract.total_supply(), 1000);
         
-        // Verify decimals is 0
-        assert_eq!(contract.decimals(), 0);
+        // Verify decimals is 2
+        assert_eq!(contract.decimals(), 2);
     }
 }
 
