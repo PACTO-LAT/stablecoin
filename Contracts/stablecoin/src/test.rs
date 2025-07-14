@@ -398,7 +398,7 @@ mod test {
         contract.mint(&minter, &user, &1000);
         assert_eq!(contract.balance(&user), 1000);
         
-        // Test that minimum amount of 5 works
+        // Test that minimum amount of 1 works
         contract.mint(&minter, &user, &1);
         assert_eq!(contract.balance(&user), 1001);
         
