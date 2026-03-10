@@ -12,15 +12,11 @@ repository = "https://github.com/PACTO-LAT/stablecoin.git"
 version = "0.0.1"
 
 [workspace.dependencies]
-soroban-sdk = "22.0.6"
-stellar-default-impl-macro = { git = "https://github.com/OpenZeppelin/stellar-contracts", tag = "v0.3.0" }
-stellar-fungible = { git = "https://github.com/OpenZeppelin/stellar-contracts", tag = "v0.3.0" }
-stellar-pausable = { git = "https://github.com/OpenZeppelin/stellar-contracts", tag = "v0.3.0" }
-stellar-pausable-macros = { git = "https://github.com/OpenZeppelin/stellar-contracts", tag = "v0.3.0" }
-stellar-upgradeable = { git = "https://github.com/OpenZeppelin/stellar-contracts", tag = "v0.3.0" }
-stellar-upgradeable-macros = { git = "https://github.com/OpenZeppelin/stellar-contracts", tag = "v0.3.0" }
-stellar-access-control = { git = "https://github.com/OpenZeppelin/stellar-contracts", tag = "v0.3.0" }
-stellar-access-control-macros = { git = "https://github.com/OpenZeppelin/stellar-contracts", tag = "v0.3.0" }
+soroban-sdk = "25.0.2"
+stellar-tokens = "0.6.0"
+stellar-access = "0.6.0"
+stellar-contract-utils = "0.6.0"
+stellar-macros = "0.6.0"
 
 [profile.release]
 opt-level = "z"
